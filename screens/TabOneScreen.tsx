@@ -1,9 +1,15 @@
 import * as React from "react";
-import { StyleSheet, BackHandler, Alert } from "react-native";
+import { StyleSheet, BackHandler, Alert, FlatList } from "react-native";
 
 import EditScreenInfo from "../components/EditScreenInfo";
 import { Text, View } from "../components/Themed";
 import { useNavigation, useFocusEffect } from "@react-navigation/native";
+
+import { EvilIcons, Entypo, Feather, AntDesign } from "@expo/vector-icons";
+import { TouchableOpacity, ScrollView } from "react-native-gesture-handler";
+import ShowInvestment from "../components/ShowInvestment";
+
+import data from "../data/index";
 
 export default function TabOneScreen() {
   const navigation = useNavigation();
@@ -38,13 +44,55 @@ export default function TabOneScreen() {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Tab One</Text>
-      <View
-        style={styles.separator}
-        lightColor="#eee"
-        darkColor="rgba(255,255,255,0.1)"
-      />
-      <EditScreenInfo path="/screens/TabOneScreen.tsx" />
+      <View style={styles.headContainer}>
+        <TouchableOpacity style={styles.iconBox}>
+          <Entypo name="dots-two-vertical" size={24} color="black" />
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.iconBox}>
+          <Feather name="square" size={24} color="black" />
+        </TouchableOpacity>
+      </View>
+      {/* HEAD COMPONENT*/}
+      <View style={styles.bodyContainer}>
+        <View style={styles.bodyContent}>
+          <Text style={styles.balanceText}>Balance</Text>
+          <View style={styles.balanceContainer}>
+            <Text style={styles.heading}>$ 6999,996</Text>
+            <Text style={styles.profitLoss}>
+              <AntDesign name="caretup" size={15} color="#7CEA5E" /> 5.6% (
+              $78.21 )
+            </Text>
+          </View>
+        </View>
+      </View>
+      <ScrollView style={styles.investment}>
+        <Text style={styles.investmentHeading}>Investment</Text>
+        <FlatList
+          data={data}
+          renderItem={({ item }) => <ShowInvestment data={item} />}
+          horizontal
+          showsHorizontalScrollIndicator={false}
+          keyExtractor={(item) => item.id}
+        />
+        <Text style={styles.investmentHeading}>Investment</Text>
+
+        <FlatList
+          data={data}
+          renderItem={({ item }) => <ShowInvestment data={item} size={150} />}
+          horizontal
+          showsHorizontalScrollIndicator={false}
+          keyExtractor={(item) => item.id}
+        />
+        <Text style={styles.investmentHeading}>Investment</Text>
+
+        <FlatList
+          data={data}
+          renderItem={({ item }) => <ShowInvestment data={item} />}
+          horizontal
+          showsHorizontalScrollIndicator={false}
+          keyExtractor={(item) => item.id}
+        />
+      </ScrollView>
     </View>
   );
 }
@@ -52,12 +100,58 @@ export default function TabOneScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
+    flexDirection: "column",
   },
-  title: {
+  headContainer: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    paddingVertical: 40,
+    paddingHorizontal: 20,
+  },
+  iconBox: {
+    borderColor: "lightgrey",
+    borderWidth: 1,
+    borderRadius: 10,
+    padding: 5,
+  },
+  bodyContainer: {
+    marginHorizontal: 20,
+    backgroundColor: "#637DF3",
+    height: "25%",
+    borderRadius: 10,
+  },
+  bodyContent: {
+    paddingVertical: 40,
+    paddingHorizontal: 20,
+    backgroundColor: "#637DF3",
+    borderRadius: 10,
+    flexDirection: "column",
+    justifyContent: "space-between",
+  },
+  heading: {
+    color: "white",
+    fontSize: 30,
+  },
+  balanceText: {
+    color: "#D0D3DF",
+    fontSize: 15,
+  },
+  investmentHeading: {
     fontSize: 20,
     fontWeight: "bold",
+    marginHorizontal: 20,
+    paddingVertical: 5,
+    color: "#A1ACB6",
+  },
+  balanceContainer: {
+    backgroundColor: "#637DF3",
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+  },
+  profitLoss: {
+    color: "#D0D3DF",
+    fontSize: 15,
   },
   separator: {
     marginVertical: 30,
