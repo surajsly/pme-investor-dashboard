@@ -7,7 +7,15 @@ import Colors from "../constants/Colors";
 import useColorScheme from "../hooks/useColorScheme";
 import TabOneScreen from "../screens/TabOneScreen";
 import TabTwoScreen from "../screens/TabTwoScreen";
-import { BottomTabParamList, TabOneParamList, TabTwoParamList } from "../types";
+import TabThreeScreen from "../screens/TabThreeScreen";
+import TabFourScreen from "../screens/TabFourScreen";
+import {
+  BottomTabParamList,
+  TabOneParamList,
+  TabTwoParamList,
+  TabThreeParamList,
+  TabFourParamList,
+} from "../types";
 import { Button } from "react-native";
 
 import { AntDesign, Feather, MaterialCommunityIcons } from "@expo/vector-icons";
@@ -46,7 +54,7 @@ export default function BottomTabNavigator() {
 
       <BottomTab.Screen
         name="TabThree"
-        component={TabTwoNavigator}
+        component={TabThreeNavigator}
         options={{
           tabBarIcon: ({ color }) => (
             <Feather name="message-square" size={24} color={color} />
@@ -56,7 +64,7 @@ export default function BottomTabNavigator() {
 
       <BottomTab.Screen
         name="TabFour"
-        component={TabTwoNavigator}
+        component={TabFourNavigator}
         options={{
           tabBarIcon: ({ color }) => (
             <MaterialCommunityIcons name="account" size={24} color={color} />
@@ -100,6 +108,34 @@ function TabTwoNavigator() {
       <TabTwoStack.Screen
         name="TabTwoScreen"
         component={TabTwoScreen}
+        options={{ headerShown: false }}
+      />
+    </TabTwoStack.Navigator>
+  );
+}
+
+const TabThreeStack = createStackNavigator<TabThreeParamList>();
+
+function TabThreeNavigator() {
+  return (
+    <TabTwoStack.Navigator>
+      <TabTwoStack.Screen
+        name="TabThreeScreen"
+        component={TabThreeScreen}
+        options={{ headerShown: false }}
+      />
+    </TabTwoStack.Navigator>
+  );
+}
+
+const TabFourStack = createStackNavigator<TabFourParamList>();
+
+function TabFourNavigator() {
+  return (
+    <TabTwoStack.Navigator>
+      <TabTwoStack.Screen
+        name="TabFourScreen"
+        component={TabFourScreen}
         options={{ headerShown: false }}
       />
     </TabTwoStack.Navigator>
