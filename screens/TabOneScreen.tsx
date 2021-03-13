@@ -10,6 +10,7 @@ import { TouchableOpacity, ScrollView } from "react-native-gesture-handler";
 import ShowInvestment from "../components/ShowInvestment";
 
 import data from "../data/index";
+import ShowNews from "../components/ShowNews";
 
 export default function TabOneScreen() {
   const navigation = useNavigation();
@@ -74,11 +75,11 @@ export default function TabOneScreen() {
           showsHorizontalScrollIndicator={false}
           keyExtractor={(item) => item.id}
         />
-        <Text style={styles.investmentHeading}>Investment</Text>
+        <Text style={styles.investmentHeading}>New Investment</Text>
 
         <FlatList
           data={data}
-          renderItem={({ item }) => <ShowInvestment data={item} size={150} />}
+          renderItem={({ item }) => <ShowNews data={item} size={150} />}
           horizontal
           showsHorizontalScrollIndicator={false}
           keyExtractor={(item) => item.id}
@@ -118,6 +119,7 @@ const styles = StyleSheet.create({
     marginHorizontal: 20,
     backgroundColor: "#637DF3",
     height: "25%",
+    elevation: 10,
     borderRadius: 10,
   },
   bodyContent: {
