@@ -2,6 +2,7 @@ import React from "react";
 
 import { Text, StyleSheet, View } from "react-native";
 import { Header } from "react-native/Libraries/NewAppScreen";
+import PropertyDetailScreen from "../../screens/PropertyDetailScreen";
 
 import {
   AntDesign,
@@ -11,7 +12,12 @@ import {
 } from "@expo/vector-icons";
 import { TouchableOpacity } from "react-native-gesture-handler";
 
+import { useNavigation } from "@react-navigation/native";
+import CustomTimeLine from "../TimeLine";
+
 const ShowInvestment = (props) => {
+  const navigation = useNavigation();
+
   const selectIcon = (type) => {
     if (type === "home")
       return (
@@ -50,8 +56,12 @@ const ShowInvestment = (props) => {
       );
   };
 
+  const onPress = () => {
+    navigation.navigate("PropertyDetailScreen", { data: props.data });
+  };
+
   return (
-    <TouchableOpacity style={styles.container}>
+    <TouchableOpacity style={styles.container} onPress={onPress}>
       <View style={styles.headerContainer}>
         {selectIcon(props.data.type)}
         <Text style={styles.heading}>{props.data.title}</Text>

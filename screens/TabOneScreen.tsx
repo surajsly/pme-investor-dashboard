@@ -43,13 +43,17 @@ export default function TabOneScreen() {
     [navigation, hasUnsavedChanges]
   );
 
+  const squarePressHandler = () => {
+    navigation.navigate("GoalScreen");
+  };
+
   return (
     <View style={styles.container}>
       <View style={styles.headContainer}>
         <TouchableOpacity style={styles.iconBox}>
           <Entypo name="dots-two-vertical" size={24} color="black" />
         </TouchableOpacity>
-        <TouchableOpacity style={styles.iconBox}>
+        <TouchableOpacity style={styles.iconBox} onPress={squarePressHandler}>
           <Feather name="square" size={24} color="black" />
         </TouchableOpacity>
       </View>

@@ -4,11 +4,14 @@ import { createStackNavigator } from "@react-navigation/stack";
 import * as React from "react";
 
 import Colors from "../constants/Colors";
+
 import useColorScheme from "../hooks/useColorScheme";
 import TabOneScreen from "../screens/TabOneScreen";
 import TabTwoScreen from "../screens/TabTwoScreen";
 import TabThreeScreen from "../screens/TabThreeScreen";
 import TabFourScreen from "../screens/TabFourScreen";
+import GoalScreen from "../screens/GoalScreen";
+
 import {
   BottomTabParamList,
   TabOneParamList,
@@ -19,6 +22,7 @@ import {
 import { Button } from "react-native";
 
 import { AntDesign, Feather, MaterialCommunityIcons } from "@expo/vector-icons";
+import PropertyDetailScreen from "../screens/PropertyDetailScreen";
 
 const BottomTab = createBottomTabNavigator<BottomTabParamList>();
 
@@ -94,6 +98,16 @@ function TabOneNavigator() {
       <TabOneStack.Screen
         name="TabOneScreen"
         component={TabOneScreen}
+        options={{ headerShown: false }}
+      />
+      <TabOneStack.Screen
+        name="PropertyDetailScreen"
+        component={PropertyDetailScreen}
+        options={{ headerTitle: "Property" }}
+      />
+      <TabOneStack.Screen
+        name="GoalScreen"
+        component={GoalScreen}
         options={{ headerShown: false }}
       />
     </TabOneStack.Navigator>
