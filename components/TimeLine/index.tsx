@@ -15,7 +15,6 @@ import Timelinesdata from "../../data/dataTimeline";
 const CustomTimeLine = (props) => {
   console.log(props.data.id);
   const timelinedata = Timelinesdata.find((x) => x.id === props.data.id);
-  console.log(timelinedata);
 
   return (
     <View style={styles.container}>

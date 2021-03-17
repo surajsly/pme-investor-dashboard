@@ -7,11 +7,13 @@ import {
   StyleSheet,
 } from "react-native";
 import { AntDesign } from "@expo/vector-icons";
+import ShowProgressBar from "../components/ShowProgressBar/ShowProgressBar";
 
 const PropertyDetailScreen = (props) => {
   return (
     <View style={styles.container}>
       <Text style={styles.heading}>Goals</Text>
+      <ShowProgressBar />
     </View>
   );
 };
