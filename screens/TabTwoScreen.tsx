@@ -9,16 +9,22 @@ import { TouchableOpacity } from "react-native-gesture-handler";
 import unsplash from "../api/unsplash";
 import ShowImageList from "../components/ShowImageList";
 
+import Loader from "../components/Loader/Loader";
+
 export default function TabTwoScreen() {
   const [text, setText] = React.useState("");
   const [images, setImages] = React.useState([]);
+  const [isLoading, setIsLoading] = React.useState(false);
 
   const searchingOn = async () => {
+    setIsLoading(true);
     const response = await unsplash.get("/search/photos/", {
       params: { query: text, per_page: 5 },
     });
     setImages(response.data.results);
+    setIsLoading(false);
   };
+
   return (
     <View style={styles.container}>
       <View style={styles.header}>
@@ -37,7 +43,13 @@ export default function TabTwoScreen() {
           />
         </TouchableOpacity>
       </View>
-      <ShowImageList images={images} />
+      {isLoading ? (
+        <View style={styles.loader}>
+          <Loader key="loading" />
+        </View>
+      ) : (
+        <ShowImageList images={images} />
+      )}
     </View>
   );
 }
@@ -64,4 +76,7 @@ const styles = StyleSheet.create({
     justifyContent: "space-around",
   },
   logo: { padding: 10 },
+  loader: {
+    padding: "50%",
+  },
 });

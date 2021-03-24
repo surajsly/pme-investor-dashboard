@@ -10,6 +10,7 @@ import { AntDesign } from "@expo/vector-icons";
 import ShowProgressBar from "../components/ShowProgressBar/ShowProgressBar";
 
 const PropertyDetailScreen = (props) => {
+  console.log(props);
   return (
     <View style={styles.container}>
       <Text style={styles.heading}>Goals</Text>
@@ -30,6 +31,12 @@ const styles = StyleSheet.create({
   heading: {
     marginVertical: 30,
     fontSize: 30,
+    color: "#141823",
+  },
+  leftheading: {
+    flex: 1,
+    marginVertical: 30,
+    fontSize: 20,
     color: "#141823",
   },
 });

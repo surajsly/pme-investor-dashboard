@@ -50,7 +50,7 @@ export default function Donut({
           circumference - (circumference * maxPerc) / 100;
         if (inputRef?.current) {
           inputRef.current.setNativeProps({
-            text: `$ ${Math.round(v.value)}`,
+            text: `${Math.round(v.value)} %`,
           });
         }
         if (circleRef?.current) {

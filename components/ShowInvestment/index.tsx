@@ -7,6 +7,8 @@ import PropertyDetailScreen from "../../screens/PropertyDetailScreen";
 import {
   AntDesign,
   Feather,
+  FontAwesome,
+  MaterialCommunityIcons,
   FontAwesome5,
   MaterialIcons,
 } from "@expo/vector-icons";
@@ -25,13 +27,18 @@ const ShowInvestment = (props) => {
       );
     else if (type === "health")
       return (
-        <AntDesign name="hearto" size={20} color="black" style={styles.icon} />
+        <FontAwesome5
+          name="building"
+          size={20}
+          color="black"
+          style={styles.icon}
+        />
       );
     else if (type === "stock")
       return (
-        <Feather
-          name="trending-up"
-          size={20}
+        <MaterialCommunityIcons
+          name="office-building"
+          size={24}
           color="black"
           style={styles.icon}
         />
@@ -47,9 +54,9 @@ const ShowInvestment = (props) => {
       );
     else if (type === "bond")
       return (
-        <MaterialIcons
-          name="outbond"
-          size={24}
+        <FontAwesome
+          name="building"
+          size={20}
           color="black"
           style={styles.icon}
         />
@@ -69,7 +76,9 @@ const ShowInvestment = (props) => {
       <View style={styles.bodyContainer}>
         <Text style={styles.currentSales}>Current Sales</Text>
         <View style={styles.numberContainer}>
-          <Text style={{ fontWeight: "bold" }}>$ {props.data.price}</Text>
+          <Text style={{ fontWeight: "bold", paddingHorizontal: 10 }}>
+            $ {props.data.price}
+          </Text>
           <Text>
             {props.data.pl > 0 ? (
               <AntDesign name="caretup" size={15} color="#7CEA5E" />
@@ -89,10 +98,11 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     borderRadius: 10,
     elevation: 2,
-    width: 140,
+    minWidth: 140,
     marginHorizontal: 10,
     marginVertical: 10,
     padding: 10,
+    paddingHorizontal: 20,
   },
   bodyContainer: {},
   headerContainer: {

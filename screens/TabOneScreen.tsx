@@ -79,7 +79,7 @@ export default function TabOneScreen() {
           showsHorizontalScrollIndicator={false}
           keyExtractor={(item) => item.id}
         />
-        <Text style={styles.investmentHeading}>New Investment</Text>
+        <Text style={styles.investmentHeading}>Investment News </Text>
 
         <FlatList
           data={data}

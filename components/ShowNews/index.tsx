@@ -58,16 +58,8 @@ const ShowNews = (props) => {
       </View>
       <View style={styles.bodyContainer}>
         <View style={styles.numberContainer}>
-          <Text style={{ fontWeight: "bold", fontSize: 20 }}>
-            $ {props.data.price}
-          </Text>
-          <Text>
-            {props.data.pl > 0 ? (
-              <AntDesign name="caretup" size={20} color="#7CEA5E" />
-            ) : (
-              <AntDesign name="caretdown" size={20} color="red" />
-            )}{" "}
-            {props.data.pl}%
+          <Text style={{ fontSize: 14, color: "grey" }}>
+            New Metro station connecting Delhi to Nodia Comming soon
           </Text>
         </View>
       </View>
