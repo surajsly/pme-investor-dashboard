@@ -13,22 +13,44 @@ import BottomTabNavigator from "./BottomTabNavigator";
 import LinkingConfiguration from "./LinkingConfiguration";
 
 import Login from "../screens/Login";
-
+import SignIn from "../screens/SignIn";
 // If you are not familiar with React Navigation, we recommend going through the
 // "Fundamentals" guide: https://reactnavigation.org/docs/getting-started
+
+import { AsyncStorage } from "react-native";
+
 export default function Navigation({
   colorScheme,
 }: {
   colorScheme: ColorSchemeName;
 }) {
   const [isSignedIn, setisSignedIn] = React.useState(false);
-  const [isLogedIn, setisLogedIn] = React.useState(false);
+
+  const getToken = async () => {
+    try {
+      let userData = await AsyncStorage.getItem("userData");
+      let data = JSON.parse(userData);
+      console.log(data);
+      if (userData) {
+        setisSignedIn(true);
+      }
+    } catch (error) {
+      console.log("Something went wrong", error);
+    }
+  };
+
+  React.useEffect(() => {
+    getToken();
+  }, []);
 
   return (
     <NavigationContainer
       linking={LinkingConfiguration}
       theme={colorScheme === "dark" ? DarkTheme : DefaultTheme}
     >
+      <Stack.Screen name="Login" component={Login} />
+      <Stack.Screen name="Signin" component={SignIn} />
+
       <RootNavigator isSignedIn={isSignedIn} />
     </NavigationContainer>
   );
@@ -43,6 +65,9 @@ function RootNavigator({ isSignedIn }) {
     return (
       <Stack.Navigator screenOptions={{ headerShown: false }}>
         <Stack.Screen name="Root" component={BottomTabNavigator} />
+        <Stack.Screen name="Login" component={Login} />
+        <Stack.Screen name="Signin" component={SignIn} />
+
         <Stack.Screen
           name="NotFound"
           component={NotFoundScreen}
@@ -53,7 +78,6 @@ function RootNavigator({ isSignedIn }) {
   } else {
     return (
       <Stack.Navigator screenOptions={{ headerShown: false }}>
-        <Stack.Screen name="Login" component={Login} />
         <Stack.Screen name="Root" component={BottomTabNavigator} />
         <Stack.Screen
           name="NotFound"

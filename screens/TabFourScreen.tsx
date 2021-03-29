@@ -1,19 +1,23 @@
 import * as React from "react";
-import { StyleSheet } from "react-native";
+import { StyleSheet, AsyncStorage } from "react-native";
 
 import EditScreenInfo from "../components/EditScreenInfo";
 import { Text, View } from "../components/Themed";
+import { TouchableOpacity } from "react-native-gesture-handler";
+import { useNavigation } from "@react-navigation/native";
 
 export default function TabTwoScreen() {
+  const navigation = useNavigation();
+
+  const signOut = async () => {
+    await AsyncStorage.removeItem("userData");
+    navigation.navigate("Login");
+  };
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Tab Four</Text>
-      <View
-        style={styles.separator}
-        lightColor="#eee"
-        darkColor="rgba(255,255,255,0.1)"
-      />
-      <EditScreenInfo path="/screens/TabTwoScreen.tsx" />
+      <TouchableOpacity onPress={signOut}>
+        <Text style={styles.title}>Sign Out</Text>
+      </TouchableOpacity>
     </View>
   );
 }
